@@ -34,12 +34,12 @@ func (p *Parser) Parse(url string, body io.Reader) (*models.ScrapedData, error) 
 
 	// Extract H1 Tags
 	doc.Find("h1").Each(func(i int, s *goquery.Selection) {
-		data.H1 = append(data.H1, s.Text())
+		data.Headings.H1 = append(data.Headings.H1, s.Text())
 	})
 
 	// Extract H2 Tags
 	doc.Find("h2").Each(func(i int, s *goquery.Selection) {
-		data.H2 = append(data.H2, s.Text())
+		data.Headings.H2 = append(data.Headings.H2, s.Text())
 	})
 
 	// Count Links

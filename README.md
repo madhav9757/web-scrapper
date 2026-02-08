@@ -1,136 +1,194 @@
-# 📡 Concurrent Web Scraper in Go
+<div align="center">
+  <img src="static/assets/banner.svg" alt="Concurrent Web Scraper Banner" width="800" />
+</div>
+
+<h1 align="center">📡 Concurrent Web Scraper</h1>
 
 <div align="center">
+  <p align="center">
+    <strong>A high-performance, parallel data extraction engine built in Go.</strong>
+  </p>
   <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go" />
   <img src="https://img.shields.io/badge/Concurrency-Parallel-blue?style=for-the-badge" alt="Concurrency" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </div>
 
+<br />
+
 ---
 
-## 📌 About
+## � Overview
 
-The **Concurrent Web Scraper** is a high-performance backend application written in **Go (Golang)** that extracts structured data from multiple websites in parallel. It leverages Go’s powerful concurrency model (goroutines, channels, and worker pools) to efficiently scrape large sets of URLs while maintaining rate limiting, fault tolerance, and clean error handling.
+<blockquote>
+  The <b>Concurrent Web Scraper</b> is a high-performance backend application written in <b>Go (Golang)</b> that extracts structured data from multiple websites in parallel. By leveraging Go’s powerful concurrency model—specifically goroutines, channels, and worker pools—it efficiently processes large volumes of URLs while maintaining strict rate limiting, fault tolerance, and elegant error handling.
+</blockquote>
 
-The project is designed with a **modular and scalable architecture**, making it easy to extend, test, and maintain. Scraped data can be exported in **JSON and CSV** formats, enabling seamless integration with analytics tools, databases, or other services.
-
-This project demonstrates real-world backend engineering concepts such as **concurrent system design, network programming, synchronization, and resilient data processing**, and serves as a practical example of building production-ready tools in Go.
+<br />
 
 ## 🔑 Key Highlights
 
-- 🚀 **Concurrent Scraping**: Leveraging goroutines and channels for high-speed execution.
-- 🏗️ **Worker Pool Pattern**: Efficiently managed concurrency with a fixed or dynamic worker set.
-- 🛑 **Rate Limiting**: Integrated throttling to prevent server overload and IP bans.
-- 🛡️ **Robust Error Handling**: Sophisticated logging and failure recovery for network operations.
-- 📊 **Structured Data Export**: Cleanly formatted output in both JSON and CSV formats.
-- ✨ **Clean Architecture**: Modular design following production-grade Go standards.
+<div align="center">
+<table border="0">
+  <tr>
+    <td align="center" width="200">
+      <img src="static/readme/crawler.svg" width="60" />
+      <br />
+      <strong>Concurrent Scraping</strong>
+      <br />
+      <small>Parallel execution for max throughput</small>
+    </td>
+    <td align="center" width="200">
+      <img src="static/readme/go.svg" width="60" />
+      <br />
+      <strong>Go Runtime</strong>
+      <br />
+      <small>Native performance & safety</small>
+    </td>
+    <td align="center" width="200">
+      <img src="static/readme/concurrency.svg" width="60" />
+      <br />
+      <strong>Worker Pools</strong>
+      <br />
+      <small>Efficient resource management</small>
+    </td>
+    <td align="center" width="200">
+      <img src="static/readme/data.svg" width="60" />
+      <br />
+      <strong>Data Export</strong>
+      <br />
+      <small>Export to JSON & CSV formats</small>
+    </td>
+  </tr>
+</table>
+</div>
 
-## 🎯 Purpose
+<br />
 
-This project was built to:
+## ✨ Core Features
 
-- 🎓 **Learn and Apply**: Mastering Go concurrency patterns (Worker Pools, Fan-in/Fan-out).
-- 🏗️ **Architectural Design**: Understanding how to build scalable and maintainable backend systems.
-- 🛠️ **Practical Engineering**: Practicing production-grade error handling and I/O operations.
-- 📁 **Portfolio Builder**: A strong backend project demonstrating proficiency in Go for professional roles.
+| Feature                  | Description                                                         |
+| :----------------------- | :------------------------------------------------------------------ |
+| 🚀 **High Speed**        | Leveraging goroutines and channels for high-speed execution.        |
+| 🏗️ **Smart Patterns**    | Efficiently managed concurrency with a fixed or dynamic worker set. |
+| 🛑 **Rate Limiting**     | Integrated throttling to prevent server overload and IP bans.       |
+| 🛡️ **Fault Tolerant**    | Sophisticated logging and failure recovery for network operations.  |
+| 📊 **Structured Output** | Cleanly formatted output in both JSON and CSV formats.              |
+| ✨ **Clean Code**        | Modular design following production-grade Go standards.             |
 
-## 🚀 Features
+<br />
 
-- **Parallel execution** using sophisticated worker pools.
-- **Customizable rate limiting** to respect target server constraints.
-- **Deep Data Extraction**: Captures Title, Meta Description, Headings (H1, H2), and Link Count.
-- **Dual Format Support**: Automated export to JSON and CSV.
-- **Config-Driven**: Full control via `config.yaml` without changing code.
+## 🎯 Project Purpose
 
-## 🛠️ Tech Stack
+This project serve as a practical demonstration of:
 
-- **Language**: [Go (Golang)](https://golang.org/)
-- **HTML Parsing**: [goquery](https://github.com/PuerkitoBio/goquery)
-- **Configuration**: YAML (Viper style)
-- **Output**: JSON, CSV
+- [x] **Mastering Concurrency**: Implementing advanced patterns like Worker Pools and Fan-in/Fan-out.
+- [x] **Scalable Architecture**: Building systems that remain maintainable as complexity grows.
+- [x] **Production Resilience**: Practicing robust error handling and network I/O optimization.
+- [x] **Professional Portfolio**: A tangible example of backend engineering proficiency in Go.
+
+<br />
+
+## �️ Tech Stack
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Language-Go-00ADD8?style=flat-square&logo=go" />
+  <img src="https://img.shields.io/badge/Parser-goquery-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/Config-YAML-lightgrey?style=flat-square" />
+  <img src="https://img.shields.io/badge/Output-JSON%2FCSV-yellow?style=flat-square" />
+</div>
+
+<br />
 
 ## 📂 Project Structure
 
 ```text
 .
-├── cmd/scraper/        # Main entry point
+├── cmd/scraper/        # Main entry point (Main logic)
 ├── internal/
-│   ├── config/        # Configuration management
-│   ├── fetcher/       # HTTP client and fetching logic
-│   ├── parser/        # HTML parsing with goquery
-│   ├── worker/        # Worker pool implementation
-│   ├── limiter/       # Rate limiting logic
-│   ├── writer/        # JSON and CSV output writers
-│   ├── models/        # Data structures
-│   ├── logger/        # Logging system
-│   └── utils/         # Helper functions
-├── configs/           # Configuration files
-├── data/              # Input URLs and Output results
-└── logs/              # Log files
+│   ├── config/        # Environment & YAML management
+│   ├── fetcher/       # Resilient HTTP client logic
+│   ├── parser/        # HTML node selection with goquery
+│   ├── worker/        # Goroutine worker pool logic
+│   ├── limiter/       # Token bucket rate limiting
+│   ├── writer/        # Flexible export engines
+│   ├── models/        # Shared data structures
+│   ├── logger/        # Structured logging system
+│   └── utils/         # Performance helpers
+├── configs/           # Scraper settings (config.yaml)
+├── data/              # Input feeds and Exported datasets
+└── logs/              # Operational audit logs
 ```
 
-## ⚙️ Configuration
+<br />
 
-Modify `configs/config.yaml` to adjust the scraper settings:
+<details>
+<summary><b>⚙️ Configuration (Advanced Settings)</b></summary>
+
+Modify `configs/config.yaml` to adjust the scraper behavior:
 
 ```yaml
 scraper:
-  worker_count: 5
-  rate_limit_sec: 2
-  timeout_sec: 10
-  max_retries: 3
+  worker_count: 5 # Number of parallel workers
+  rate_limit_sec: 2 # Delay between requests
+  timeout_sec: 10 # Network timeout
+  max_retries: 3 # Failure retry logic
   user_agent: "ConcurrentScraper/1.0"
 files:
   input_file: "data/input_urls.txt"
   output_file: "data/output"
 ```
 
-## 🏃 Getting Started
+</details>
 
-### Prerequisites
+<br />
 
-- Go 1.21+
+## 🏃 Quick Start
 
-### Installation
+### 1. Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repo-url>
-   cd concurrent-web-scraper
-   ```
-2. Install dependencies:
-   ```bash
-   go mod tidy
-   ```
+```bash
+git clone <repo-url>
+cd concurrent-web-scraper
+go mod tidy
+```
 
-### Running the Scraper
+### 2. Execution
 
-Use the Makefile for easy execution:
+Run using the optimized build script:
 
 ```bash
 make run
 ```
 
-Or run directly:
+<p align="center"><i>- or -</i></p>
+<samp>go run cmd/scraper/main.go</samp>
 
-```bash
-go run cmd/scraper/main.go
-```
+<br />
 
-## 📊 Example Output
-
-The scraper generates `data/output.json` and `data/output.csv`:
+## 📊 Sample Result
 
 ```json
 {
   "url": "https://example.com",
   "title": "Example Domain",
-  "description": "This domain is for use in illustrative examples",
+  "description": "Illustrative example domain for documentation",
   "links": 1,
   "scraped_at": "2026-02-08T10:30:00Z"
 }
 ```
 
-## 🛡️ License
+<br />
 
-MIT License
+---
+
+<div align="center">
+  <img src="static/stickers/gopher.svg" width="150" />
+  <br />
+  <sub>Built with ❤️ and Go Concurrency</sub>
+  <br />
+  <img src="static/stickers/robot.svg" width="40" />
+</div>
+
+<p align="center">
+  Licensed under <a href="LICENSE">MIT</a>
+</p>

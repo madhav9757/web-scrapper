@@ -40,8 +40,8 @@ func (cw *CSVWriter) Write(data []models.ScrapedData) error {
 			d.URL,
 			d.Title,
 			d.MetaDescription,
-			strings.Join(d.H1, " | "),
-			strings.Join(d.H2, " | "),
+			strings.Join(d.Headings.H1, " | "),
+			strings.Join(d.Headings.H2, " | "),
 			strconv.Itoa(d.LinksCount),
 			d.ScrapedAt.Format("2006-01-02 15:04:05"),
 		}

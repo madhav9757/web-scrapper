@@ -2,6 +2,7 @@ package worker
 
 import (
 	"sync"
+	"time"
 	"web-scrapper/internal/fetcher"
 	"web-scrapper/internal/limiter"
 	"web-scrapper/internal/logger"
@@ -45,9 +46,21 @@ func (p *Pool) worker(id int) {
 		p.limiter.Wait()
 		logger.Info("Worker", id, "scraping", job.URL)
 
+		p.results <- models.ScrapedData{
+			URL:       job.URL,
+			ScrapedAt: time.Now(),
+			Status:    "scraping",
+		}
+
 		resp, err := p.fetcher.Fetch(job.URL)
 		if err != nil {
 			logger.Error("Worker", id, "failed to fetch", job.URL, ":", err)
+			p.results <- models.ScrapedData{
+				URL:       job.URL,
+				ScrapedAt: time.Now(),
+				Status:    "error",
+				Error:     err.Error(),
+			}
 			continue
 		}
 
@@ -55,9 +68,16 @@ func (p *Pool) worker(id int) {
 		resp.Body.Close()
 		if err != nil {
 			logger.Error("Worker", id, "failed to parse", job.URL, ":", err)
+			p.results <- models.ScrapedData{
+				URL:       job.URL,
+				ScrapedAt: time.Now(),
+				Status:    "error",
+				Error:     err.Error(),
+			}
 			continue
 		}
 
+		data.Status = "success"
 		p.results <- *data
 	}
 }
